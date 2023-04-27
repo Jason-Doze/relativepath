@@ -3,9 +3,9 @@
 # This script clones the expressapi repo from github using HTTPS, and installs dependencies
 
 # Check for git and clone
-if ( which git > /dev/null)
+if ( which git > /dev/null )
 then 
-  echo "git is present"
+  echo -e "\n==== Git is present ====\n"
 else  
   echo "install git"
   sudo apt install git
@@ -17,7 +17,7 @@ then
   echo -e "\n==== Repo already cloned ====\n"
 else 
   echo -e "\n==== Cloning repo ====\n"
-  git clone git@github.com:Jason-Doze/relativepath.git
+  git clone https://github.com/Jason-Doze/expressapi.git /home/jasondoze/expressapi
 fi
 
 # Install NodeJS 

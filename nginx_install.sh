@@ -40,13 +40,40 @@ else
     sudo systemctl start nginx
 fi
 
+# Create /etc/nginx/sites-available directory
+if [  -d /etc/nginx/sites-available ] 
+then
+    echo -e "\n==== Directory /etc/nginx/sites-available present ====\n"
+else
+    echo -e "\n==== Creating /etc/nginx/sites-available directory ====\n"
+    sudo mkdir /etc/nginx/sites-available
+fi
+
+# Create /etc/nginx/sites-enabled directory
+if [  -d /etc/nginx/sites-enabled ] 
+then
+    echo -e "\n==== Directory /etc/nginx/sites-enabled present ====\n"
+else
+    echo -e "\n==== Creating /etc/nginx/sites-enabled directory ====\n"
+    sudo mkdir /etc/nginx/sites-enabled
+fi
+
+# Update nginx.conf to include sites-enabled directory
+if ( grep -q "include /etc/nginx/sites-enabled/\*;" /etc/nginx/nginx.conf )
+then
+    echo -e "\n==== nginx.conf already includes /etc/nginx/sites-enabled/* ====\n"
+else
+    echo -e "\n==== Updating nginx.conf to include /etc/nginx/sites-enabled/* ====\n"
+    sudo sed -i '/http {/a \\tinclude /etc/nginx/sites-enabled/*;' /etc/nginx/nginx.conf
+fi
+
 # Copy nameless_api.conf to /etc/nginx/sites-available directory.
-if [ -f /etc/nginx/sites-available/namelessapi ]
+if [ -f /etc/nginx/sites-available/relativepathapi ]
 then
     echo -e "\n==== Nameless_api.conf present in sites-available ====\n"
 else
     echo -e "\n==== Copying nameless_api.conf to sites-available ====\n"
-    sudo cp /home/jasondoze/nameless/nameless_api.conf /etc/nginx/sites-available/namelessapi
+    sudo cp /home/jasondoze/relativepath/nameless_api.conf /etc/nginx/sites-available/relativepathapi
 fi
 
 # Remove symlink to Nginx default in /etc/nginx/sites-enabled directory.
@@ -59,12 +86,12 @@ else
 fi
 
 # Create symlink in /etc/nginx/sites-enabled directory.
-if [ -L /etc/nginx/sites-enabled/namelessapi ]
+if [ -L /etc/nginx/sites-enabled/relativepathapi ]
 then
     echo -e "\n==== Symlink present ====\n"
 else
     echo -e "\n==== Creating symlink ====\n"
-    sudo ln -s /etc/nginx/sites-available/namelessapi /etc/nginx/sites-enabled/
+    sudo ln -s /etc/nginx/sites-available/relativepathapi /etc/nginx/sites-enabled/relativepathapi
 fi
 
 # Restart nginx service
