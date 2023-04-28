@@ -40,33 +40,6 @@ else
     sudo systemctl start nginx
 fi
 
-# Create /etc/nginx/sites-available directory
-if [  -d /etc/nginx/sites-available ] 
-then
-    echo -e "\n==== Directory /etc/nginx/sites-available present ====\n"
-else
-    echo -e "\n==== Creating /etc/nginx/sites-available directory ====\n"
-    sudo mkdir /etc/nginx/sites-available
-fi
-
-# Create /etc/nginx/sites-enabled directory
-if [  -d /etc/nginx/sites-enabled ] 
-then
-    echo -e "\n==== Directory /etc/nginx/sites-enabled present ====\n"
-else
-    echo -e "\n==== Creating /etc/nginx/sites-enabled directory ====\n"
-    sudo mkdir /etc/nginx/sites-enabled
-fi
-
-# Update nginx.conf to include sites-enabled directory
-if ( grep -q "include /etc/nginx/sites-enabled/\*;" /etc/nginx/nginx.conf )
-then
-    echo -e "\n==== nginx.conf already includes /etc/nginx/sites-enabled/* ====\n"
-else
-    echo -e "\n==== Updating nginx.conf to include /etc/nginx/sites-enabled/* ====\n"
-    sudo sed -i '/http {/a \\tinclude /etc/nginx/sites-enabled/*;' /etc/nginx/nginx.conf
-fi
-
 # Copy nameless_api.conf to /etc/nginx/sites-available directory.
 if [ -f /etc/nginx/sites-available/relativepathapi ]
 then
@@ -94,8 +67,8 @@ else
     sudo ln -s /etc/nginx/sites-available/relativepathapi /etc/nginx/sites-enabled/relativepathapi
 fi
 
-# Restart nginx service
-echo -e "\n==== Restarting nginx service ====\n"
-sudo systemctl restart nginx
+# Restart Nginx service
+echo -e "\n==== Restarting Nginx service ====\n"
+sudo systemctl restart Nginx
 
 

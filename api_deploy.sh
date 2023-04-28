@@ -36,6 +36,9 @@ then
   echo -e "\n==== Node_modules installed ====\n"
 else 
   echo -e "\n==== Installing node_modules ====\n"
-  cd /home/jasondoze/expressapi && npm install 
+  pushd /home/jasondoze/expressapi || exit
+  npm install 
+  popd || exit
+
 fi
 
