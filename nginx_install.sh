@@ -40,13 +40,13 @@ else
     sudo systemctl start nginx
 fi
 
-# Copy nameless_api.conf to /etc/nginx/sites-available directory.
-if [ -f /etc/nginx/sites-available/relativepathapi ]
+# Copy relativepath.conf to /etc/nginx/sites-available directory.
+if [ -f /etc/nginx/sites-available/relativepath ]
 then
-    echo -e "\n==== Nameless_api.conf present in sites-available ====\n"
+    echo -e "\n==== relativepath.conf present in sites-available ====\n"
 else
-    echo -e "\n==== Copying nameless_api.conf to sites-available ====\n"
-    sudo cp /home/jasondoze/relativepath/nameless_api.conf /etc/nginx/sites-available/relativepathapi
+    echo -e "\n==== Copying relativepath.conf to sites-available ====\n"
+    sudo cp /home/jasondoze/relativepath/relativepath.conf /etc/nginx/sites-available/relativepath
 fi
 
 # Remove symlink to Nginx default in /etc/nginx/sites-enabled directory.
@@ -59,16 +59,15 @@ else
 fi
 
 # Create symlink in /etc/nginx/sites-enabled directory.
-if [ -L /etc/nginx/sites-enabled/relativepathapi ]
+if [ -L /etc/nginx/sites-enabled/relativepath ]
 then
     echo -e "\n==== Symlink present ====\n"
 else
-    echo -e "\n==== Creating symlink ====\n"
-    sudo ln -s /etc/nginx/sites-available/relativepathapi /etc/nginx/sites-enabled/relativepathapi
+    echo -e "\n==== Creating symlink for relativepath ====\n"
+    sudo ln -s /etc/nginx/sites-available/relativepath /etc/nginx/sites-enabled/relativepath
 fi
 
 # Restart Nginx service
 echo -e "\n==== Restarting Nginx service ====\n"
-sudo systemctl restart Nginx
-
+sudo systemctl restart nginx
 

@@ -38,7 +38,6 @@ else
   echo -e "\n==== Installing node_modules ====\n"
   pushd /home/jasondoze/expressapi || exit
   npm install 
-  popd || exit
-
+  popd || exit  
 fi
 
