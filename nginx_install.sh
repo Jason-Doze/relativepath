@@ -69,5 +69,5 @@ fi
 
 # Restart Nginx service
 echo -e "\n==== Restarting Nginx service ====\n"
-sudo systemctl restart nginx
+sudo systemctl reload nginx
 

@@ -1,13 +1,13 @@
 [Unit]
-Description=nameless api service
+Description=Relativepath Static App
 After=network.target
 
 [Service]
 Environment=NODE_ENV=production
 Type=simple
 User=jasondoze
-WorkingDirectory=/home/jasondoze/expressapi/
-ExecStart=/usr/bin/npm start 
+WorkingDirectory=/home/jasondoze/relativepath/public
+ExecStart=npx http-server -p 3000
 Restart=on-failure
 
 [Install]
