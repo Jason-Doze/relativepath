@@ -31,7 +31,7 @@ else
 fi
 
 # Install NPM and its dependencies
-if [ -d node_modules ] 
+if [ -d /home/jasondoze/expressapi/node_modules ] 
 then
   echo -e "\n==== Node_modules installed ====\n"
 else 
