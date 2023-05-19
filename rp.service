@@ -1,13 +1,13 @@
 [Unit]
-Description=Relativepath Static App
+Description=relativepath sitee
 After=network.target
 
 [Service]
 Environment=NODE_ENV=production
 Type=simple
 User=jasondoze
-WorkingDirectory=/home/jasondoze/relativepath/public
-ExecStart=npx http-server -p 3000
+WorkingDirectory=/home/jasondoze/relativepath/
+ExecStart=usr/bin/npm start
 Restart=on-failure
 
 [Install]
