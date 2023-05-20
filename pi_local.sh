@@ -17,7 +17,7 @@ done
 
 # Use rsync to copy files to the Pi server
 echo -e "\n==== Copying files to Pi ====\n"
-rsync -av -e "ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519" --delete --exclude={'.git','.gitignore','commands.txt','images','README.md','node_modules'} "$(pwd)" "$USER"@"$PI_HOST":/home/"$USER"
+rsync -av -e "ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519" --delete --exclude={'.git','.gitignore','commands.txt','README.md','node_modules'} "$(pwd)" "$USER"@"$PI_HOST":/home/"$USER"
 
 # Use SSH to execute commands on the Pi server
 echo -e "\n==== Executing install script ====\n"

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# This script clones the expressapi repo from github using HTTPS, and installs dependencies
+# This script clones the expressapi repo from github using HTTPS, and installs Nodejs and its dependencies in the relativepath and expressapi repos.
 
 # Check for git and clone
 if ( which git > /dev/null )
@@ -30,12 +30,21 @@ else
   sudo apt install -y nodejs 
 fi
 
-# Install NPM and its dependencies
+# Install NPM dependencies in relativepath
+if [ -d /home/jasondoze/relativepath/node_modules ] 
+then
+  echo -e "\n==== Relativepath node_modules installed ====\n"
+else 
+  echo -e "\n==== Installing relativepath node_modules ====\n"
+  npm install 
+fi
+
+# Install NPM dependencies in expressapi
 if [ -d /home/jasondoze/expressapi/node_modules ] 
 then
-  echo -e "\n==== Node_modules installed ====\n"
+  echo -e "\n==== Expressapi node_modules installed ====\n"
 else 
-  echo -e "\n==== Installing node_modules ====\n"
+  echo -e "\n==== Installing node_modules in expressapi ====\n"
   pushd /home/jasondoze/expressapi || exit
   npm install 
   popd || exit  
