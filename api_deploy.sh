@@ -21,7 +21,7 @@ else
 fi
 
 # Install NodeJS 
-if ( which nodejs > /dev/null ) 
+if ( which node > /dev/null ) 
 then
   echo -e "\n==== NodeJS setup present ====\n"
 else 
